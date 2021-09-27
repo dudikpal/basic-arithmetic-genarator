@@ -1,0 +1,17 @@
+.card-header, .card-footer {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.modal-body {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.example input {
+    /* border-color: crimson;
+    border-width: 3px; */
+
+}

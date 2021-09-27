@@ -1,0 +1,18 @@
+GET http://localhost:8080/api/examples
+Accept: application/json
+
+###
+POST http://localhost:8080/api/examples
+Content-Type: application/json
+
+{
+  "examplePcs": 10,
+"operandPcs": 3,
+  "operandRangeMin": 10,
+  "operandRangeMax": 200,
+  "operator": "ADDITION",
+  "unknownField": "OPERATOR"
+}
+###
+
+

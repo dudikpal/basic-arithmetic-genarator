@@ -1,0 +1,4 @@
+<div>
+    <button id="solutions-button" onclick="checkSolutions()" type="button" class="btn btn-success btn-lg">Ellenőrzés</button>
+
+</div>
