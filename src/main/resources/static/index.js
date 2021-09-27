@@ -90,7 +90,7 @@ function generateExamples() {
 
 function beginSolution() {
 
-    fetch('http://localhost:8080/api/examples')
+    fetch(url)
         .then(function (response) {
             return response.json();
         })
