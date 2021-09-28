@@ -134,7 +134,7 @@
                                 <div class="card-body">
                                     <label for="operand-minvalue">Min:</label>
                                     <input type="number" class="form-control" id="operand-minvalue" value="1" min="-1000"
-                                           max="900">
+                                     max="900">
                                     <label for="operand-maxvalue">Max:</label>
                                     <input type="number" class="form-control" id="operand-maxvalue" value="10" min="-900"
                                            max="1000">
@@ -275,16 +275,16 @@
                                                             <br>Felhasználható jelek:
                                                                 <ul>
                                                                     <li>
-                                                                        Összeadás: +
+                                                                        <pre>" + "   Összeadás</pre>
                                                                     </li>
                                                                     <li>
-                                                                        Kivonás: -
+                                                                        <pre>" - "   Kivonás</pre>
                                                                     </li>
                                                                     <li>
-                                                                        Szorzás: *
+                                                                        <pre>" * "   Szorzás</pre>
                                                                     </li>
                                                                     <li>
-                                                                        Osztás: /
+                                                                        <pre>" / "   Osztás</pre>
                                                                     </li>
                                                                 </ul>
                                                          </li>

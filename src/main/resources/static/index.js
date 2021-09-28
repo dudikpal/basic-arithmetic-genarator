@@ -29,31 +29,41 @@ function generateExamples() {
     let operator = document.querySelector('[name="operatorType"]:checked');
     let unknownField = document.querySelector('[name="unknownItem"]:checked');
 
-    if (operandPcs.value > 3) {
-        operandPcs.value = 3;
-    } else if (operandPcs.value < 2) {
-        operandPcs.value = 2;
-    }
 
-    if (operandRangeMin.value < -1000) {
-        operandRangeMin.value = -1000;
-    }
 
-    if (operandRangeMax.value > 1000) {
-        operandRangeMax.value = 1000;
-    }
 
-    if (operandRangeMin.value > operandRangeMax.value) {
-        let temp = operandRangeMin.value;
-        operandRangeMin.value = operandRangeMax.value;
-        operandRangeMax.value = temp;
-    }
 
-    if (examplePcs.value < 1) {
-        examplePcs.value = 1;
-    } else if (examplePcs.value > 100) {
-        examplePcs.value = 100;
-    }
+        if (operandPcs.value > 3) {
+            operandPcs.value = 3;
+        } else if (operandPcs.value < 2) {
+            operandPcs.value = 2;
+        }
+
+        if (parseInt(operandRangeMin.value) > parseInt(operandRangeMax.value)) {
+            let temp = operandRangeMin.value;
+            operandRangeMin.value = operandRangeMax.value;
+            operandRangeMax.value = temp;
+        }
+
+        if (operandRangeMin.value < -1000) {
+            operandRangeMin.value = -1000;
+        } else if (operandRangeMin.value > 900) {
+            operandRangeMin.value = 900;
+        }
+
+        if (operandRangeMax.value > 1000) {
+            operandRangeMax.value = 1000;
+        } else if (operandRangeMax.value < -900) {
+            operandRangeMax.value = -900;
+        }
+
+        if (examplePcs.value < 1) {
+            examplePcs.value = 1;
+        } else if (examplePcs.value > 100) {
+            examplePcs.value = 100;
+        }
+
+
 
     let data = JSON.stringify(
         {
@@ -66,7 +76,7 @@ function generateExamples() {
         }
     );
 
-    //validateParameters();
+
     taskCounter += parseInt(examplePcs.value);
     let taskCounterSpan = document.querySelector("#taskCount");
     taskCounterSpan.innerHTML = taskCounter + " feladat vár megoldásra";
@@ -77,10 +87,7 @@ function generateExamples() {
         headers: {
             "Content-Type": "application/json"
         }
-    })
-        .then((data) => {
-            console.log(data);
-        });
+    });
 
     loadExamplesButton.disabled = false;
 
@@ -124,19 +131,21 @@ function checkSolutions() {
 
     for (let i = 0; i < exampleDiv.length; i++) {
 
-        let expected = exampleDiv[i].querySelector(".resultSpan").innerHTML.split("Megoldás:\t")[1];
+        let resultSpan = exampleDiv[i].querySelector(".resultSpan");
+        let inputField = exampleDiv[i].querySelector("input");
+        let expected = resultSpan.innerHTML.split("Megoldás:\t")[1];
         let actual = exampleDiv[i].querySelector("input").value;
 
         if (expected != actual) {
-            exampleDiv[i].querySelector("input").style.borderColor = "crimson";
-            exampleDiv[i].querySelector("input").style.borderWidth = "3px";
-            exampleDiv[i].querySelector(".resultSpan").style.color = "red";
+            inputField.style.borderWidth = "3px";
+            inputField.style.borderColor = "crimson";
+            resultSpan.style.color = "red";
 
         }
 
-        exampleDiv[i].querySelector(".resultSpan").hidden = false;
-        exampleDiv[i].querySelector("input").readOnly = true;
-        console.log(expected);
+        resultSpan.hidden = false;
+        inputField.readOnly = true;
+
     }
 
     solutionsButton.hidden = true;

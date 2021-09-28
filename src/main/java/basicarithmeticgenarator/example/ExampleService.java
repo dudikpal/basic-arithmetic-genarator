@@ -47,7 +47,12 @@ public class ExampleService {
             sb = new StringBuilder();
 
             for (int j = 0; j < command.getOperandPcs(); j+=2) {
-                example[j] = String.valueOf(rnd.nextInt(command.getOperandRangeMax() - command.getOperandRangeMin() + 1) + command.getOperandRangeMin());
+
+                /*if (command.getOperandRangeMax() < 0) {
+                    example[j] = String.valueOf(rnd.nextInt(command.getOperandRangeMax() - command.getOperandRangeMin() + 1) + command.getOperandRangeMin());
+                } else {
+                }*/
+                    example[j] = String.valueOf(rnd.nextInt(command.getOperandRangeMax() - command.getOperandRangeMin() + 1) + command.getOperandRangeMin());
                 sb.append(example[j]);
                 example[j + 1] = command.getOperator().sign;
                 sb.append(example[j + 1]);
@@ -55,7 +60,8 @@ public class ExampleService {
 
             example[example.length - 3] = String.valueOf(rnd.nextInt(command.getOperandRangeMax() - command.getOperandRangeMin() + 1) + command.getOperandRangeMin());
             sb.append(example[example.length - 3]);
-            int result = parser.parseExpression(sb.toString()).getValue(Integer.class);
+            String correctDoubleNegativeSign = sb.toString().replace("--", "+");
+            int result = parser.parseExpression(correctDoubleNegativeSign).getValue(Integer.class);
             example[example.length - 2] = "=";
             example[example.length - 1] = String.valueOf(result);
             examples.add(example);
